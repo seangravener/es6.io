@@ -32,16 +32,31 @@
 <script>
 
   // Select all the list items on the page and convert to array
+  const liEls = Array.from(document.querySelectorAll('li[data-time]'))
+  console.log(liEls)
 
   // Filter for only the elements that contain the word 'Flexbox'
+  const liElsFiltered = liEls.filter(el => el.innerHTML.includes('Flexbox'))
+  console.log(liElsFiltered)
 
   // map down to a list of time strings
+  const liElsTime = liEls.map(el => el.dataset.time)
+  console.log(liElsTime)
 
   // map to an array of seconds
+  const liElsSeconds = liElsTime.map(time => time.split(':')[1])
+  console.log('seconds', liElsSeconds)
 
   // reduce to get total
+  const total = liElsSeconds.reduce((a, b) => parseInt(a) + parseInt(b))
+  console.log(total)
 
   // 🔥 This can also be done in a single .reduce(), but we're practicing arrow functions here, so chain them!
+  const chain = Array.from(document.querySelectorAll('li[data-time]'))
+    .filter(el => el.innerHTML.includes('Flexbox'))
+    .map(el => el.dataset.time)
+    .map(time => time.split(':')[1])
+    .reduce((a, b) => parseInt(a) + parseInt(b))
 
 </script>
 </body>
